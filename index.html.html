@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="tr" class="light scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batman Forklift | Alım, Satım, Kiralama & 7/24 Teknik Servis</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .dark body {
+            background-color: #090d16;
+            color: #f1f5f9;
+        }
+        .light body {
+            background-color: #ffffff;
+            color: #0f172a;
+        }
+        .glass-header-light {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+        }
+        .glass-header-dark {
+            background: rgba(9, 13, 22, 0.88);
+            backdrop-filter: blur(12px);
+        }
+        .pattern-bg {
+            background-image: radial-gradient(rgba(245, 158, 11, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-brand-500 text-slate-950 px-4 py-2 text-xs md:text-sm font-bold flex justify-between items-center shadow-inner">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <span><i class="fa-solid fa-star text-amber-900 mr-1"></i> %95 Müşteri Memnuniyeti</span>
+                <span class="hidden sm:inline"><i class="fa-solid fa-location-dot mr-1"></i> Batman, Çevre İller, Tüm İlçe & Köylere Mobil Tamir</span>
+                <span class="hidden md:inline"><i class="fa-solid fa-clock mr-1"></i> 7/24 Teknik Destek</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="tel:+905303467055" class="hover:underline flex items-center"><i class="fa-solid fa-phone mr-1"></i> 0530 346 70 55</a>
+                <!-- Dev Panel Access Quick Icon -->
+                <button onclick="openDevModal()" class="bg-slate-950 text-brand-400 hover:text-white px-2 py-0.5 rounded font-mono text-[11px] flex items-center space-x-1">
+                    <i class="fa-solid fa-code"></i>
+                    <span id="dev-status-badge">Geliştirici Girişi</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header id="main-header" class="sticky top-0 z-40 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300 glass-header-light dark:glass-header-dark">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                </div>
+                <div>
+                    <span class="text-xl md:text-2xl font-black tracking-tight text-slate-900 dark:text-white uppercase block leading-none">
+                        BATMAN<span class="text-brand-500">FORKLİFT</span>
+                    </span>
+                    <span class="text-[10px] font-bold text-slate-500 dark:text-slate-400 tracking-wider uppercase block mt-0.5">Alım • Satım • Kiralama</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center space-x-6 font-medium text-sm text-slate-700 dark:text-slate-300">
+                <a href="#anasayfa" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">Ana Sayfa</a>
+                <a href="#alim-satim-kiralama" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors font-bold text-brand-600 dark:text-brand-400">Alım, Satım & Kiralama</a>
+                <a href="#filo" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">Forklift Filomuz</a>
+                <a href="#ekibimiz" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">Ekibimiz</a>
+                <a href="#hesaplayici" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">Fiyat Hesapla</a>
+                <a href="#iletisim" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">İletişim</a>
+            </nav>
+
+            <!-- Actions & Theme Switcher -->
+            <div class="flex items-center space-x-3">
+                <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center justify-center p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-brand-500 hover:text-slate-950 transition-all shadow-sm" title="Arka Plan Rengini Değiştir">
+                    <i id="theme-sun-icon" class="fa-solid fa-sun text-lg text-amber-500 hidden"></i>
+                    <i id="theme-moon-icon" class="fa-solid fa-moon text-lg text-slate-700"></i>
+                    <span id="theme-text-label" class="ml-2 text-xs font-bold hidden sm:inline">SIYAH TEMA</span>
+                </button>
+
+                <a href="https://wa.me/905303467055?text=Merhaba,%20forklift%20alim,%20satim,%20kiralama%20ve%20tamir%20hakkinda%20bilgi%20almak%20istiyorum." target="_blank" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-green-600 hover:bg-green-700 text-white font-semibold text-sm transition-all shadow-md space-x-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>WhatsApp</span>
+                </a>
+
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-4 space-y-3">
+            <a href="#anasayfa" onclick="toggleMobileMenu()" class="block text-slate-800 dark:text-slate-200 font-medium hover:text-brand-500">Ana Sayfa</a>
+            <a href="#alim-satim-kiralama" onclick="toggleMobileMenu()" class="block text-brand-600 dark:text-brand-400 font-bold">Alım, Satım & Kiralama</a>
+            <a href="#filo" onclick="toggleMobileMenu()" class="block text-slate-800 dark:text-slate-200 font-medium hover:text-brand-500">Forklift Filomuz</a>
+            <a href="#ekibimiz" onclick="toggleMobileMenu()" class="block text-slate-800 dark:text-slate-200 font-medium hover:text-brand-500">Ekibimiz</a>
+            <a href="#hesaplayici" onclick="toggleMobileMenu()" class="block text-slate-800 dark:text-slate-200 font-medium hover:text-brand-500">Fiyat Hesapla</a>
+            <a href="#iletisim" onclick="toggleMobileMenu()" class="block text-slate-800 dark:text-slate-200 font-medium hover:text-brand-500">İletişim</a>
+            <button onclick="openDevModal(); toggleMobileMenu();" class="w-full text-left py-2 text-xs font-mono text-brand-500 font-bold flex items-center"><i class="fa-solid fa-user-gear mr-2"></i> Geliştirici Paneli Girişi</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="anasayfa" class="relative py-16 md:py-24 overflow-hidden pattern-bg">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Text -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-600 dark:text-brand-400 text-xs md:text-sm font-bold">
+                        <i class="fa-solid fa-award text-amber-500 text-base"></i>
+                        <span>Batman'da Müşterilerimizin %95'i Hizmetlerimizden Memnun!</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+                        Forklift <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 via-amber-500 to-orange-500">Alım, Satım & Kiralama</span> Hizmetleri
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Batman merkez, tüm <strong>çevre iller, ilçe ve bağlı köylere</strong> kadar yerinde <strong>Mobil Tamir & Bakım Servisi</strong>, 1.5 tondan 10 tona Sıfır & 2. El Forklift Satışı ve Kiralama desteği.
+                    </p>
+
+                    <!-- Hero Call to Actions -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#alim-satim-kiralama" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold text-base shadow-xl shadow-brand-500/25 transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-truck-pickup"></i>
+                            <span>Alım, Satım & Kiralama Kataloğu</span>
+                        </a>
+                        <a href="#hesaplayici" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-semibold text-base transition-all border border-slate-300 dark:border-slate-700 flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Fiyat Hesapla</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Indicators with %95 Banner -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-200 dark:border-slate-800 text-left">
+                        <div class="bg-amber-500/10 p-3 rounded-2xl border border-amber-500/20">
+                            <div class="text-2xl sm:text-3xl font-black text-brand-500">%95</div>
+                            <div class="text-xs text-slate-700 dark:text-slate-300 font-bold">Müşteri Memnuniyeti</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-black text-brand-500">120+</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Satılık & Kiralık Makine</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-black text-brand-500">7/24</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Saha Servis Ekibi</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Hero Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md bg-gradient-to-br from-amber-500/10 via-brand-500/5 to-transparent p-6 rounded-3xl border border-brand-500/20 shadow-2xl">
+                        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-md border border-slate-200 dark:border-slate-800 text-center relative overflow-hidden">
+                            <span class="absolute top-3 right-3 bg-brand-500 text-slate-950 font-bold text-[10px] px-2.5 py-1 rounded-full uppercase">
+                                GÜNCEL KAMPANYA
+                            </span>
+                            
+                            <img id="hero-featured-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Batman Forklift" class="w-full h-48 object-cover rounded-xl my-3 border border-slate-200 dark:border-slate-800">
+
+                            <h3 id="hero-featured-title" class="text-xl font-bold text-slate-900 dark:text-white">3.5 Ton Dizel Heavy Duty Forklift</h3>
+                            <p id="hero-featured-desc" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Sıfır ve İkinci El Satış Seçenekleri & Avantajlı Uzun Dönem Kiralama</p>
+                            
+                            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-xs font-semibold">
+                                <span class="text-slate-600 dark:text-slate-400"><i class="fa-solid fa-shield-halved text-green-500 mr-1"></i> Garantili / Bakımlı</span>
+                                <span id="hero-featured-price" class="text-brand-600 dark:text-brand-400 font-black text-sm">₺ 3,000 / Gün'den Başlayan</span>
+                            </div>
+
+                            <button onclick="quickQuote('3.5 Ton Dizel Forklift')" class="mt-4 w-full py-2.5 rounded-xl bg-slate-900 dark:bg-brand-500 text-white dark:text-slate-950 font-bold text-sm hover:opacity-90 transition-opacity">
+                                Alım / Kiralama Teklifi Al
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Alım, Satım ve Kiralama Showcase Section -->
+    <section id="alim-satim-kiralama" class="py-16 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+        <div class="container mx-auto px-4">
+            
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="bg-brand-500/10 text-brand-600 dark:text-brand-400 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+                    Özel Fiyatlar & Garantili Araçlar
+                </span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mt-2">
+                    Forklift Alım, Satım ve Kiralama Kataloğu
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm md:text-base">
+                    Geliştirici panelimiz üzerinden fotoğrafları, fiyatları ve açıklamaları anında güncellenebilen güncel stoklarımız.
+                </p>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 mt-6">
+                    <button onclick="filterMainCatalog(event, 'all')" class="catalog-tab active px-4 py-2 rounded-xl text-xs md:text-sm font-semibold bg-brand-500 text-slate-950 shadow-sm">Tüm Araçlarımız</button>
+                    <button onclick="filterMainCatalog(event, 'kiralik')" class="catalog-tab px-4 py-2 rounded-xl text-xs md:text-sm font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Kiralık Forkliftler</button>
+                    <button onclick="filterMainCatalog(event, 'satilik')" class="catalog-tab px-4 py-2 rounded-xl text-xs md:text-sm font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Sıfır & 2. El Satış</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Forklift Catalog Grid -->
+            <div id="catalog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Javascript standard and custom admin-edited forklift cards render here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Ekibimiz (Our Team) Section -->
+    <section id="ekibimiz" class="py-16">
+        <div class="container mx-auto px-4">
+            
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-brand-600 dark:text-brand-400 font-bold text-xs uppercase tracking-wider">Profesyonel Kadromuz</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Batman Forklift Ekibimiz</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm mt-2">
+                    Alanında uzman ustalarımız, G sınıfı ehliyetli operatörlerimiz ve satış danışmanlarımızla %95 memnuniyet sunuyoruz.
+                </p>
+            </div>
+
+            <!-- Team Members Grid -->
+            <div id="team-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Javascript renders dynamic team cards here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Cost Estimator -->
+    <section id="hesaplayici" class="py-16 bg-slate-900 text-white relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto bg-slate-800/90 rounded-3xl p-6 md:p-10 border border-slate-700 shadow-2xl">
+                
+                <div class="text-center mb-8">
+                    <span class="bg-brand-500/20 text-brand-400 font-bold text-xs px-3 py-1 rounded-full uppercase">Canlı Fiyat Motoru</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold mt-2">Forklift Kiralama Fiyat Hesaplayıcı</h2>
+                    <p class="text-slate-400 text-xs md:text-sm mt-1">Geliştirici paneli üzerinden taban fiyatları yönetilebilen anlık hesaplama sistemi.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-2">1. Yakıt / Tonaj Tipi</label>
+                        <select id="calc-type" onchange="calculatePrice()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-white focus:border-brand-500 focus:outline-none">
+                            <option value="1.5">1.5 - 2.5 Ton Akülü Elektrikli</option>
+                            <option value="3.5" selected>3.5 Ton Dizel Standart</option>
+                            <option value="5.0">5.0 Ton Dizel Ağır Hizmet</option>
+                            <option value="7.0">7.0 - 10 Ton Dev Arazi Forklifti</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-2">2. Kiralama Süresi</label>
+                        <select id="calc-duration" onchange="calculatePrice()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-white focus:border-brand-500 focus:outline-none">
+                            <option value="daily">Günlük Kiralama</option>
+                            <option value="weekly" selected>Haftalık Kiralama (%10 İndirimli)</option>
+                            <option value="monthly">Aylık Kiralama (%25 İndirimli)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-2">3. Operatör Desteği</label>
+                        <select id="calc-operator" onchange="calculatePrice()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-white focus:border-brand-500 focus:outline-none">
+                            <option value="no">Operatörsüz (Sadece Araç)</option>
+                            <option value="yes" selected>Operatörlü (Sertifikalı Sürücü Dahil)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Price Result Display -->
+                <div class="mt-8 bg-slate-950 rounded-2xl p-6 border border-brand-500/30 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <span class="text-xs text-slate-400 block">Tahmini Kiralama Bedeli Aralığı</span>
+                        <div id="price-result" class="text-2xl md:text-3xl font-black text-brand-400 mt-1">
+                            ₺ 3,500 - ₺ 4,500 / Gün
+                        </div>
+                        <span class="text-[11px] text-slate-500">*Batman içi nakliye dahil, KDV hariçtir.</span>
+                    </div>
+
+                    <button onclick="sendCalculatedQuote()" class="w-full md:w-auto px-6 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold text-sm transition-all flex items-center justify-center space-x-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>WhatsApp'tan Teklif İste</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="iletisim" class="py-16 bg-slate-50 dark:bg-slate-900/80 border-t border-slate-200 dark:border-slate-800">
+        <div class="container mx-auto px-4">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- Contact Info Card -->
+                <div class="lg:col-span-5 bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-md">
+                    <div class="flex items-center space-x-2 text-brand-500 mb-2">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        <span class="text-xs font-bold uppercase">%95 Müşteri Memnuniyeti Garantisi</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Bizimle İletişime Geçin</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center shrink-0 text-lg">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 font-semibold uppercase block">Servis Ağımız & Adres</span>
+                                <p class="text-sm font-medium text-slate-800 dark:text-slate-200 mt-0.5">
+                                    Organize Sanayi Bölgesi, Batman. <br>
+                                    <strong class="text-brand-500">Batman merkez, tüm ilçe, bağlı köyler ve çevre illere mobil gezici tamir aracımızla hizmet veriyoruz.</strong>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center shrink-0 text-lg">
+                                <i class="fa-solid fa-wrench"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 font-semibold uppercase block">Arıza & Tamir Hattı</span>
+                                <a href="tel:+905303467055" class="text-base font-bold text-brand-600 dark:text-brand-400 hover:underline block mt-0.5">
+                                    0530 346 70 55
+                                </a>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Forklift arızalarınız için bizi doğrudan bu numaradan arayabilirsiniz.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-700 flex gap-3">
+                        <a href="tel:+905303467055" class="flex-1 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-xs text-center hover:opacity-90 flex items-center justify-center space-x-1">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>Arıza Bildir: 0530 346 70 55</span>
+                        </a>
+                        <a href="https://wa.me/905303467055" target="_blank" class="flex-1 py-3 rounded-xl bg-green-600 text-white font-bold text-xs text-center hover:bg-green-700 flex items-center justify-center space-x-1">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="lg:col-span-7 bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Alım, Satım & Kiralama Teklif Formu</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Formu doldurun, temsilcimiz 15 dakika içerisinde sizi arasın.</p>
+
+                    <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Adınız Soyadınız *</label>
+                                <input type="text" required placeholder="Ahmet Yılmaz" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-brand-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Telefon Numaranız *</label>
+                                <input type="tel" required placeholder="0555 000 00 00" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-brand-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Hizmet Türü</label>
+                            <select class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-brand-500">
+                                <option>Kiralama (Dizel / Elektrikli Forklift)</option>
+                                <option>Sıfır Forklift Satın Alımı</option>
+                                <option>2. El Forklift Alım & Satımı</option>
+                                <option>Mobil Teknik Servis & Arıza Bakımı</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Detaylar / İhtiyaç</label>
+                            <textarea rows="3" placeholder="Gerekli tonaj, kullanım yeri ve detaylar" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-brand-500"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold text-sm shadow-lg shadow-brand-500/20">
+                            Teklif Talebini Gönder
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-10 border-t border-slate-800 text-xs">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-slate-950 font-black">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                </div>
+                <div>
+                    <span class="text-white font-bold text-base block">BATMAN FORKLİFT</span>
+                    <span class="text-[10px] text-slate-500">batmanforklift.com - Tüm Hakları Saklıdır © 2026</span>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 text-slate-400 font-medium">
+                <a href="#anasayfa" class="hover:text-brand-400">Ana Sayfa</a>
+                <a href="#alim-satim-kiralama" class="hover:text-brand-400">Alım, Satım & Kiralama</a>
+                <a href="#ekibimiz" class="hover:text-brand-400">Ekibimiz</a>
+                <a href="#hesaplayici" class="hover:text-brand-400">Teklif Al</a>
+                <a href="#iletisim" class="hover:text-brand-400">İletişim</a>
+            </div>
+
+            <button onclick="openDevModal()" class="px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900 text-brand-400 hover:text-white text-xs font-mono">
+                <i class="fa-solid fa-lock mr-1"></i> Geliştirici Modu
+            </button>
+        </div>
+    </footer>
+
+    <!-- DEVELOPER ADMIN MODAL (Geliştirici Paneli) -->
+    <div id="dev-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-brand-500/40 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto text-white p-6 shadow-2xl relative">
+            
+            <button onclick="closeDevModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Login Screen -->
+            <div id="dev-login-screen" class="max-w-md mx-auto py-8 text-center space-y-4">
+                <div class="w-16 h-16 bg-brand-500/20 text-brand-400 rounded-2xl flex items-center justify-center mx-auto text-2xl font-bold border border-brand-500/40">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <h2 class="text-2xl font-black">Geliştirici Paneli Girişi</h2>
+                <p class="text-xs text-slate-400">Yetkili geliştirici doğrulama alanı. Her iki alana da güçlü geliştirici şifre anahtarı girildiğinde paneli açabilirsiniz.</p>
+
+                <div class="space-y-3 text-left pt-2">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Geliştirici E-Posta / Gmail</label>
+                        <input id="dev-email-input" type="text" placeholder="ornek.gelistirici@gmail.com" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-sm text-white focus:border-brand-500 focus:outline-none font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Geliştirici Şifresi / Dev Pass</label>
+                        <input id="dev-pass-input" type="password" placeholder="••••••••" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-sm text-white focus:border-brand-500 focus:outline-none font-mono">
+                    </div>
+                    <button onclick="verifyDevLogin()" class="w-full py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold text-sm transition-all">
+                        Geliştirici Olarak Giriş Yap
+                    </button>
+                </div>
+            </div>
+
+            <!-- Authenticated Admin Dashboard -->
+            <div id="dev-dashboard" class="hidden space-y-6">
+                
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-800 pb-4 gap-2">
+                    <div>
+                        <span class="bg-green-500/20 text-green-400 font-bold text-[10px] px-2.5 py-0.5 rounded-full uppercase">YETKİLİ GELİŞTİRİCİ OTURUMU</span>
+                        <h2 class="text-2xl font-black mt-1">Batman Forklift Geliştirici Paneli</h2>
+                    </div>
+                    <button onclick="logoutDev()" class="px-3 py-1.5 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white text-xs font-semibold transition-colors">
+                        Oturumu Kapat
+                    </button>
+                </div>
+
+                <!-- Admin Tabs -->
+                <div class="flex border-b border-slate-800 space-x-2 text-xs font-bold overflow-x-auto">
+                    <button onclick="switchDevTab(event, 'tab-forklifts')" class="dev-tab-btn active px-4 py-2 rounded-t-xl bg-brand-500 text-slate-950">🚜 Forkliftler & Fotoğraflar</button>
+                    <button onclick="switchDevTab(event, 'tab-team')" class="dev-tab-btn px-4 py-2 rounded-t-xl bg-slate-800 text-slate-300">👥 Ekibimiz Yönetimi</button>
+                    <button onclick="switchDevTab(event, 'tab-pricing')" class="dev-tab-btn px-4 py-2 rounded-t-xl bg-slate-800 text-slate-300">💰 Fiyatlandırma Ayarları</button>
+                    <button onclick="switchDevTab(event, 'tab-users')" class="dev-tab-btn px-4 py-2 rounded-t-xl bg-slate-800 text-slate-300">🔐 Yetkili Geliştiriciler</button>
+                </div>
+
+                <!-- Tab 1: Forklifts & Photos Edit -->
+                <div id="tab-forklifts" class="dev-tab-content space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-base font-bold">Forklift Kataloğunu Düzenle & Fotoğraf Ekle</h3>
+                        <button onclick="addNewForkliftPrompt()" class="px-3 py-1.5 rounded-lg bg-brand-500 text-slate-950 text-xs font-bold"><i class="fa-solid fa-plus mr-1"></i> Yeni Forklift Ekle</button>
+                    </div>
+
+                    <div id="admin-forklift-list" class="space-y-4 max-h-[50vh] overflow-y-auto pr-2">
+                        <!-- JS Dynamic edit forms for every forklift item -->
+                    </div>
+                </div>
+
+                <!-- Tab 2: Team Members Edit -->
+                <div id="tab-team" class="dev-tab-content hidden space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-base font-bold">Ekibimiz Bölümünü Düzenle</h3>
+                        <button onclick="addNewTeamMemberPrompt()" class="px-3 py-1.5 rounded-lg bg-brand-500 text-slate-950 text-xs font-bold"><i class="fa-solid fa-user-plus mr-1"></i> Ekip Üyesi Ekle</button>
+                    </div>
+
+                    <div id="admin-team-list" class="space-y-4 max-h-[50vh] overflow-y-auto pr-2">
+                        <!-- JS Dynamic edit forms for team members -->
+                    </div>
+                </div>
+
+                <!-- Tab 3: Calculator Rates -->
+                <div id="tab-pricing" class="dev-tab-content hidden space-y-4">
+                    <h3 class="text-base font-bold">Otomatik Fiyat Hesaplayıcı Taban Oranları</h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+                            <label class="block font-semibold">1.5 - 2.5 Ton Günlük Taban Fiyat (₺)</label>
+                            <input id="rate-15" type="number" class="w-full bg-slate-900 p-2 rounded border border-slate-700 text-white">
+                            
+                            <label class="block font-semibold mt-3">3.5 Ton Günlük Taban Fiyat (₺)</label>
+                            <input id="rate-35" type="number" class="w-full bg-slate-900 p-2 rounded border border-slate-700 text-white">
+                        </div>
+
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+                            <label class="block font-semibold">5.0 Ton Günlük Taban Fiyat (₺)</label>
+                            <input id="rate-50" type="number" class="w-full bg-slate-900 p-2 rounded border border-slate-700 text-white">
+                            
+                            <label class="block font-semibold mt-3">7.0 - 10.0 Ton Günlük Taban Fiyat (₺)</label>
+                            <input id="rate-70" type="number" class="w-full bg-slate-900 p-2 rounded border border-slate-700 text-white">
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs space-y-2">
+                        <label class="block font-semibold">Günlük Operatör Hizmet Bedeli (₺)</label>
+                        <input id="rate-operator" type="number" class="w-full bg-slate-900 p-2 rounded border border-slate-700 text-white">
+                    </div>
+
+                    <button onclick="saveCalculatorRates()" class="w-full py-3 rounded-xl bg-brand-500 text-slate-950 font-bold text-xs">
+                        Fiyatlandırma Ayarlarını Kaydet
+                    </button>
+                </div>
+
+                <!-- Tab 4: User Developer Access Controls -->
+                <div id="tab-users" class="dev-tab-content hidden space-y-4">
+                    <h3 class="text-base font-bold">Yetkili Geliştirici Gmail & Erişim İzinleri</h3>
+                    <p class="text-xs text-slate-400">Sadece burada kayıtlı olan e-postalar veya geliştirici şifresi olan kişiler değişiklik yapabilir. Yetkisiz girişler engellenir.</p>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+                        <label class="block text-xs font-semibold">Yeni Yetkili Geliştirici Gmail / E-Posta Ekle</label>
+                        <div class="flex gap-2">
+                            <input id="new-dev-email" type="email" placeholder="yeni.gelistirici@gmail.com" class="flex-1 bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-white">
+                            <button onclick="addAuthorizedDevEmail()" class="px-4 py-2.5 rounded-xl bg-green-600 hover:bg-green-700 text-white text-xs font-bold">Yetki Ver</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <h4 class="text-xs font-bold mb-2">Yetkilendirilmiş Geliştirici Listesi:</h4>
+                        <ul id="authorized-devs-list" class="space-y-1 text-xs text-slate-300 font-mono">
+                            <!-- JS Renders List -->
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+                        <label class="block text-xs font-semibold">Master Geliştirici Şifresini Değiştir</label>
+                        <div class="flex gap-2">
+                            <input id="new-master-pass" type="text" placeholder="Yeni Master Şifre" class="flex-1 bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-white">
+                            <button onclick="updateMasterPassword()" class="px-4 py-2.5 rounded-xl bg-brand-500 text-slate-950 text-xs font-bold">Güncelle</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-msg" class="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl border border-brand-500/40 hidden z-50 text-xs flex items-center space-x-3">
+        <i class="fa-solid fa-circle-check text-brand-400 text-lg"></i>
+        <span id="toast-text">İşlem başarıyla gerçekleştirildi.</span>
+    </div>
+
+    <!-- JavaScript Application State & Logic -->
+    <script>
+        // Default Forklift Fleet Data (Editable by Dev)
+        let fleetData = [
+            {
+                id: "f1",
+                title: "3.5 Ton Dizel Heavy Duty Forklift",
+                category: "kiralik",
+                typeTag: "DİZEL SERİSİ",
+                code: "BM-F35",
+                capacity: "3,500 kg",
+                height: "4.5 Metre",
+                desc: "Açık saha operasyonları, şantiye ve sanayi yüklemeleri için ideal güç ve dayanıklılık.",
+                rentalPrice: 3000,
+                salePrice: 750000,
+                imgUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: "f2",
+                title: "2.5 Ton Akülü Sessiz Forklift",
+                category: "kiralik",
+                typeTag: "ELEKTRİKLİ SERİSİ",
+                code: "BM-E25",
+                capacity: "2,500 kg",
+                height: "5.0 Metre Triplex",
+                desc: "Sıfır emisyon, kapalı gıda tesisleri, lojistik depolar ve gürültüsüz çalışma alanı.",
+                rentalPrice: 2400,
+                salePrice: 620000,
+                imgUrl: "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: "f3",
+                title: "7.0 Ton Ağır Hizmet Arazi Forklifti",
+                category: "satilik",
+                typeTag: "SATIŞ / HEAVY DUTY",
+                code: "BM-HD70",
+                capacity: "7,000 kg",
+                height: "6.0 Metre",
+                desc: "Mermer, ağır demir çelik ve zorlu arazi zemininde maksimum tork ve performans.",
+                rentalPrice: 7500,
+                salePrice: 1850000,
+                imgUrl: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: "f4",
+                title: "5.0 Ton Dizel Güçlü Sanayi Forklifti",
+                category: "satilik",
+                typeTag: "2. EL SATIŞ & KİRALIK",
+                code: "BM-F50",
+                capacity: "5,000 kg",
+                height: "4.8 Metre",
+                desc: "Ekspertiz garantili, tam bakımlı Japon endüstriyel motorlu güçlü araç.",
+                rentalPrice: 4800,
+                salePrice: 1150000,
+                imgUrl: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: "f5",
+                title: "1.6 Ton Yaya Kumandalı Akülü İstif",
+                category: "kiralik",
+                typeTag: "AKÜLÜ İSTİF",
+                code: "BM-ST16",
+                capacity: "1,600 kg",
+                height: "3.6 Metre",
+                desc: "Dar depo koridorları ve raf üstü istiflemelerde kolay manevra kabiliyeti.",
+                rentalPrice: 1800,
+                salePrice: 340000,
+                imgUrl: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: "f6",
+                title: "10.0 Ton Dev Sanayi Forklifti",
+                category: "satilik",
+                typeTag: "DEV KAPASİTE SATIŞ",
+                code: "BM-HD100",
+                capacity: "10,000 kg",
+                height: "5.5 Metre",
+                desc: "Konteyner yükleme, fabrika kurulumu ve dev lojistik operasyonları.",
+                rentalPrice: 9500,
+                salePrice: 2450000,
+                imgUrl: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // Default Team Members Data (Editable by Dev)
+        let teamData = [
+            {
+                id: "t1",
+                name: "Ahmet Usta",
+                title: "Baş Tekniker & Bakım Sorumlusu",
+                imgUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
+                bio: "15 yıllık forklift bakım ve hidrolik arıza uzmanı. 7/24 sahada ikame araç desteği sağlıyor."
+            },
+            {
+                id: "t2",
+                name: "Mehmet Yılmaz",
+                title: "Saha & Kiralama Operasyon Müdürü",
+                imgUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80",
+                bio: "Batman ve çevre illerdeki projelerinizin en doğru tonajda makine seçimini organize eder."
+            },
+            {
+                id: "t3",
+                name: "Sertan Demir",
+                title: "Kıdemli G Sınıfı Operatör",
+                imgUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+                bio: "Hassas yük kaldırma ve ağır sanayi sahalarında binlerce saatlik tecrübe."
+            },
+            {
+                id: "t4",
+                name: "Barış Kaya",
+                title: "Satış & İkinci El Ekspertiz Sorumlusu",
+                imgUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+                bio: "Sıfır ve 2. el alım satım işlemlerinde en uygun fiyat ve doğru ekspertiz güvencesi."
+            }
+        ];
+
+        // Developer Authorization Settings
+        let devState = {
+            isLoggedIn: false,
+            masterPass: "batman2026dev",
+            authorizedEmails: ["admin@batmanforklift.com", "dev@batmanforklift.com"],
+            currentUserEmail: "",
+            rates: {
+                base15: 2200,
+                base35: 3000,
+                base50: 4800,
+                base70: 7500,
+                operatorFee: 1200
+            }
+        };
+
+        let currentCatalogFilter = 'all';
+
+        // Helper: Escape HTML to prevent XSS (HTML Injection) in dynamically rendered inputs
+        function escapeHTML(str) {
+            if (str === null || str === undefined) return "";
+            return String(str).replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag] || tag));
+        }
+
+        // Load persisted state if exists
+        function loadState() {
+            try {
+                const savedFleet = localStorage.getItem('bm_fleet');
+                const savedTeam = localStorage.getItem('bm_team');
+                const savedDev = localStorage.getItem('bm_dev_state');
+                const savedTheme = localStorage.getItem('bm_theme');
+
+                if (savedFleet) fleetData = JSON.parse(savedFleet);
+                if (savedTeam) teamData = JSON.parse(savedTeam);
+                if (savedDev) devState = JSON.parse(savedDev);
+
+                // Load User Theme Preference
+                if (savedTheme === 'dark') {
+                    document.documentElement.classList.remove('light');
+                    document.documentElement.classList.add('dark');
+                    document.getElementById('theme-sun-icon').classList.remove('hidden');
+                    document.getElementById('theme-moon-icon').classList.add('hidden');
+                    const themeLabel = document.getElementById('theme-text-label');
+                    if (themeLabel) themeLabel.innerText = "BEYAZ TEMA";
+                }
+            } catch (e) {
+                console.error("Local storage veri okuma hatası, önbellek varsayılan ayarlarla başlatılıyor.", e);
+            }
+
+            renderCatalog(currentCatalogFilter);
+            renderTeam();
+            calculatePrice();
+        }
+
+        function saveState() {
+            localStorage.setItem('bm_fleet', JSON.stringify(fleetData));
+            localStorage.setItem('bm_team', JSON.stringify(teamData));
+            localStorage.setItem('bm_dev_state', JSON.stringify(devState));
+        }
+
+        // 1. Theme Switcher Logic (White / Black)
+        function toggleTheme() {
+            const html = document.documentElement;
+            const sunIcon = document.getElementById('theme-sun-icon');
+            const moonIcon = document.getElementById('theme-moon-icon');
+            const themeLabel = document.getElementById('theme-text-label');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                if (themeLabel) themeLabel.innerText = "SIYAH TEMA";
+                localStorage.setItem('bm_theme', 'light');
+                showToast("Arka plan BEYAZ temaya geçirildi!");
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+                if (themeLabel) themeLabel.innerText = "BEYAZ TEMA";
+                localStorage.setItem('bm_theme', 'dark');
+                showToast("Arka plan SIYAH temaya geçirildi!");
+            }
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // 2. Render Main Forklift Catalog (Alım, Satım & Kiralama)
+        function renderCatalog(filterCategory = currentCatalogFilter) {
+            const container = document.getElementById('catalog-grid');
+            container.innerHTML = '';
+            currentCatalogFilter = filterCategory;
+
+            const filtered = fleetData.filter(item => filterCategory === 'all' || item.category === filterCategory);
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-white dark:bg-slate-800/90 rounded-2xl border border-slate-200 dark:border-slate-700/80 overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col justify-between";
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-48 bg-slate-100 dark:bg-slate-900 overflow-hidden">
+                            <img src="${escapeHTML(item.imgUrl)}" alt="${escapeHTML(item.title)}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" onerror="this.src='https://placehold.co/600x400/1e293b/f59e0b?text=Batman+Forklift'">
+                            <span class="absolute top-3 left-3 bg-brand-500 text-slate-950 font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase">
+                                ${escapeHTML(item.typeTag)}
+                            </span>
+                            <span class="absolute top-3 right-3 bg-slate-900/80 text-white font-mono text-[10px] px-2 py-0.5 rounded">
+                                ${escapeHTML(item.code)}
+                            </span>
+                        </div>
+
+                        <div class="p-5">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug">${escapeHTML(item.title)}</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">${escapeHTML(item.desc)}</p>
+
+                            <div class="my-4 grid grid-cols-2 gap-2 text-xs bg-slate-50 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                                <div><span class="text-slate-400 block">Kapasite:</span> <strong class="text-slate-800 dark:text-slate-200">${escapeHTML(item.capacity)}</strong></div>
+                                <div><span class="text-slate-400 block">Yükseklik:</span> <strong class="text-slate-800 dark:text-slate-200">${escapeHTML(item.height)}</strong></div>
+                            </div>
+
+                            <div class="flex justify-between items-center text-xs font-bold pt-2 border-t border-slate-100 dark:border-slate-700/60">
+                                <div class="text-slate-600 dark:text-slate-400">
+                                    Kiralık: <span class="text-brand-600 dark:text-brand-400 font-black">₺${Number(item.rentalPrice).toLocaleString('tr-TR')}/gün</span>
+                                </div>
+                                <div class="text-slate-600 dark:text-slate-400">
+                                    Satılık: <span class="text-green-600 dark:text-green-400 font-black">₺${Number(item.salePrice).toLocaleString('tr-TR')}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 pt-0">
+                        <button onclick="quickQuote('${escapeHTML(item.title)}')" class="w-full py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold text-xs transition-colors flex items-center justify-center space-x-1">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>Alım / Kiralama Teklifi İste</span>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterMainCatalog(evt, category) {
+            const tabs = document.querySelectorAll('.catalog-tab');
+            tabs.forEach(t => t.className = "catalog-tab px-4 py-2 rounded-xl text-xs md:text-sm font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700");
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.className = "catalog-tab active px-4 py-2 rounded-xl text-xs md:text-sm font-semibold bg-brand-500 text-slate-950 shadow-sm";
+            }
+            renderCatalog(category);
+        }
+
+        // 3. Render Ekibimiz (Our Team)
+        function renderTeam() {
+            const container = document.getElementById('team-grid');
+            container.innerHTML = '';
+
+            teamData.forEach(member => {
+                const card = document.createElement('div');
+                card.className = "bg-white dark:bg-slate-800/80 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 text-center shadow-sm hover:shadow-lg transition-all";
+                card.innerHTML = `
+                    <div class="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-brand-500 shadow-md">
+                        <img src="${escapeHTML(member.imgUrl)}" alt="${escapeHTML(member.name)}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/200x200/1e293b/f59e0b?text=Usta'">
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white">${escapeHTML(member.name)}</h3>
+                    <span class="text-xs font-semibold text-brand-600 dark:text-brand-400 block mt-0.5">${escapeHTML(member.title)}</span>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">${escapeHTML(member.bio)}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // 4. Calculator Logic
+        function calculatePrice() {
+            const type = parseFloat(document.getElementById('calc-type').value);
+            const duration = document.getElementById('calc-duration').value;
+            const operator = document.getElementById('calc-operator').value;
+
+            let baseDailyPrice = devState.rates.base35;
+
+            if (type === 1.5) baseDailyPrice = devState.rates.base15;
+            if (type === 3.5) baseDailyPrice = devState.rates.base35;
+            if (type === 5.0) baseDailyPrice = devState.rates.base50;
+            if (type === 7.0) baseDailyPrice = devState.rates.base70;
+
+            let durationMultiplier = 1;
+            let durationUnit = "Gün";
+            if (duration === 'weekly') {
+                durationMultiplier = 0.9;
+                durationUnit = "Gün (Haftalık Kiralamada)";
+            } else if (duration === 'monthly') {
+                durationMultiplier = 0.75;
+                durationUnit = "Gün (Aylık Kiralamada)";
+            }
+
+            let opFee = (operator === 'yes') ? devState.rates.operatorFee : 0;
+            let finalPrice = Math.round((baseDailyPrice * durationMultiplier) + opFee);
+
+            const resultElem = document.getElementById('price-result');
+            if (resultElem) {
+                resultElem.innerText = `₺ ${finalPrice.toLocaleString('tr-TR')} / ${durationUnit}`;
+            }
+        }
+
+        // Helper: Check if string is a strong password (at least 8 chars, contains letters & numbers)
+        function isStrongPassword(str) {
+            if (!str || str.length < 8) return false;
+            const hasLetter = /[a-zA-Z]/.test(str);
+            const hasNumOrSpec = /[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(str);
+            return hasLetter && hasNumOrSpec;
+        }
+
+        // 5. Developer Panel Security & Verification
+        function openDevModal() {
+            const modal = document.getElementById('dev-modal');
+            modal.classList.remove('hidden');
+            if (devState.isLoggedIn) {
+                document.getElementById('dev-login-screen').classList.add('hidden');
+                document.getElementById('dev-dashboard').classList.remove('hidden');
+                populateAdminForms();
+            } else {
+                document.getElementById('dev-login-screen').classList.remove('hidden');
+                document.getElementById('dev-dashboard').classList.add('hidden');
+            }
+        }
+
+        function verifyDevLogin() {
+            const emailInput = document.getElementById('dev-email-input').value.trim();
+            const passInput = document.getElementById('dev-pass-input').value.trim();
+
+            if (!emailInput || !passInput) {
+                showToast("Lütfen hem Gmail hem de Şifre alanını doldurun!");
+                return;
+            }
+
+            // Check 1: Custom secret key combination
+            const isSecretCombo = (emailInput === "Kirmizi*Kamyon*77" && passInput === "Yagmur!Yagiyor!12");
+
+            // Check 2: Master key or authorized emails
+            const isMasterKey = (passInput === devState.masterPass || emailInput === devState.masterPass);
+            const isAuthorizedEmail = devState.authorizedEmails.some(e => e.toLowerCase() === emailInput.toLowerCase());
+
+            // Check 3: Dual strong passwords
+            const isBothStrong = isStrongPassword(emailInput) && isStrongPassword(passInput);
+
+            if (isSecretCombo || isMasterKey || isAuthorizedEmail || isBothStrong) {
+                devState.isLoggedIn = true;
+                devState.currentUserEmail = emailInput || "Yetkili Geliştirici";
+                saveState();
+                
+                document.getElementById('dev-status-badge').innerText = "Geliştirici Modu (Aktif)";
+                document.getElementById('dev-login-screen').classList.add('hidden');
+                document.getElementById('dev-dashboard').classList.remove('hidden');
+                populateAdminForms();
+                
+                showToast("Geliştirici Doğrulaması Başarılı! Yönetim paneli açıldı.");
+            } else {
+                showToast("HATA: Geçersiz Geliştirici Gmail adresi veya şifre!");
+            }
+        }
+
+        function closeDevModal() {
+            document.getElementById('dev-modal').classList.add('hidden');
+        }
+
+        function logoutDev() {
+            devState.isLoggedIn = false;
+            saveState();
+            document.getElementById('dev-status-badge').innerText = "Geliştirici Girişi";
+            closeDevModal();
+            showToast("Geliştirici oturumu kapatıldı.");
+        }
+
+        // 6. Developer Admin Operations
+        function switchDevTab(evt, tabId) {
+            document.querySelectorAll('.dev-tab-btn').forEach(btn => btn.className = "dev-tab-btn px-4 py-2 rounded-t-xl bg-slate-800 text-slate-300");
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.className = "dev-tab-btn active px-4 py-2 rounded-t-xl bg-brand-500 text-slate-950";
+            }
+            
+            document.querySelectorAll('.dev-tab-content').forEach(c => c.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+        }
+
+        function populateAdminForms() {
+            // Populate Forklifts Edit List
+            const forkList = document.getElementById('admin-forklift-list');
+            forkList.innerHTML = '';
+
+            fleetData.forEach((item, index) => {
+                const box = document.createElement('div');
+                box.className = "bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3";
+                box.innerHTML = `
+                    <div class="flex justify-between items-center text-xs font-bold text-brand-400">
+                        <span>#${index + 1} - ${escapeHTML(item.code)} (${escapeHTML(item.title)})</span>
+                        <button onclick="removeForklift(${index})" class="text-red-400 hover:underline">Sil</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <div>
+                            <label class="block text-slate-400">Başlık / Model Adı</label>
+                            <input id="edit-title-${index}" type="text" value="${escapeHTML(item.title)}" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400">Fotoğraf Görsel URL'si</label>
+                            <input id="edit-img-${index}" type="text" value="${escapeHTML(item.imgUrl)}" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400">Günlük Kiralama Fiyatı (₺)</label>
+                            <input id="edit-rprice-${index}" type="number" value="${item.rentalPrice}" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400">Satış Fiyatı (₺)</label>
+                            <input id="edit-sprice-${index}" type="number" value="${item.salePrice}" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400">Açıklama / Tanım</label>
+                        <textarea id="edit-desc-${index}" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs text-white">${escapeHTML(item.desc)}</textarea>
+                    </div>
+                    <button onclick="saveForkliftEdit(${index})" class="px-3 py-1.5 rounded bg-brand-500 text-slate-950 text-xs font-bold">
+                        Değişiklikleri Kaydet
+                    </button>
+                `;
+                forkList.appendChild(box);
+            });
+
+            // Populate Team Edit List
+            const teamList = document.getElementById('admin-team-list');
+            teamList.innerHTML = '';
+
+            teamData.forEach((member, index) => {
+                const box = document.createElement('div');
+                box.className = "bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3";
+                box.innerHTML = `
+                    <div class="flex justify-between items-center text-xs font-bold text-brand-400">
+                        <span>#${index + 1} ${escapeHTML(member.name)} (${escapeHTML(member.title)})</span>
+                        <button onclick="removeTeamMember(${index})" class="text-red-400 hover:underline">Sil</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <div>
+                            <label class="block text-slate-400">Ad Soyad</label>
+                            <input id="edit-tname-${index}" type="text" value="${escapeHTML(member.name)}" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400">Unvan</label>
+                            <input id="edit-ttitle-${index}" type="text" value="${escapeHTML(member.title)}" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white">
+                        </div>
+                    </div>
+                    <div class="text-xs">
+                        <label class="block text-slate-400">Fotoğraf URL</label>
+                        <input id="edit-timg-${index}" type="text" value="${escapeHTML(member.imgUrl)}" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white">
+                    </div>
+                    <div class="text-xs">
+                        <label class="block text-slate-400">Açıklama / Uzmanlık</label>
+                        <input id="edit-tbio-${index}" type="text" value="${escapeHTML(member.bio)}" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white">
+                    </div>
+                    <button onclick="saveTeamEdit(${index})" class="px-3 py-1.5 rounded bg-brand-500 text-slate-950 text-xs font-bold">
+                        Ekip Üyesini Güncelle
+                    </button>
+                `;
+                teamList.appendChild(box);
+            });
+
+            // Populate Calculator Rates
+            document.getElementById('rate-15').value = devState.rates.base15;
+            document.getElementById('rate-35').value = devState.rates.base35;
+            document.getElementById('rate-50').value = devState.rates.base50;
+            document.getElementById('rate-70').value = devState.rates.base70;
+            document.getElementById('rate-operator').value = devState.rates.operatorFee;
+
+            // Populate Authorized Devs
+            const devsList = document.getElementById('authorized-devs-list');
+            devsList.innerHTML = '';
+            devState.authorizedEmails.forEach((email, i) => {
+                devsList.innerHTML += `<li class="flex justify-between items-center py-1 border-b border-slate-900"><span>• ${escapeHTML(email)}</span> <button onclick="removeDevEmail(${i})" class="text-red-400 text-[10px]">Kaldır</button></li>`;
+            });
+        }
+
+        function saveForkliftEdit(index) {
+            fleetData[index].title = document.getElementById(`edit-title-${index}`).value;
+            fleetData[index].imgUrl = document.getElementById(`edit-img-${index}`).value;
+            
+            const rPrice = parseFloat(document.getElementById(`edit-rprice-${index}`).value);
+            const sPrice = parseFloat(document.getElementById(`edit-sprice-${index}`).value);
+            fleetData[index].rentalPrice = isNaN(rPrice) ? 0 : rPrice;
+            fleetData[index].salePrice = isNaN(sPrice) ? 0 : sPrice;
+            
+            fleetData[index].desc = document.getElementById(`edit-desc-${index}`).value;
+
+            saveState();
+            renderCatalog(currentCatalogFilter);
+            showToast(`"${fleetData[index].title}" başarıyla güncellendi!`);
+        }
+
+        function addNewForkliftPrompt() {
+            const newObj = {
+                id: "f_" + Date.now(),
+                title: "Yeni Forklift Modeli",
+                category: "kiralik",
+                typeTag: "YENİ MODEL",
+                code: "BM-NEW",
+                capacity: "3,000 kg",
+                height: "4.5 Metre",
+                desc: "Yeni eklenen forklift model tanımı ve detayları.",
+                rentalPrice: 3200,
+                salePrice: 800000,
+                imgUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80"
+            };
+            fleetData.unshift(newObj);
+            saveState();
+            renderCatalog();
+            populateAdminForms();
+            showToast("Yeni forklift eklendi!");
+        }
+
+        function removeForklift(index) {
+            fleetData.splice(index, 1);
+            saveState();
+            renderCatalog();
+            populateAdminForms();
+            showToast("Forklift katalogdan silindi.");
+        }
+
+        function saveTeamEdit(index) {
+            teamData[index].name = document.getElementById(`edit-tname-${index}`).value;
+            teamData[index].title = document.getElementById(`edit-ttitle-${index}`).value;
+            teamData[index].imgUrl = document.getElementById(`edit-timg-${index}`).value;
+            teamData[index].bio = document.getElementById(`edit-tbio-${index}`).value;
+
+            saveState();
+            renderTeam();
+            showToast(`Ekip üyesi ${teamData[index].name} güncellendi!`);
+        }
+
+        function addNewTeamMemberPrompt() {
+            teamData.push({
+                id: "t_" + Date.now(),
+                name: "Yeni Ekip Üyesi",
+                title: "Teknik Servis Uzmanı",
+                imgUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+                bio: "Batman Forklift teknik ve saha ekibi üyesi."
+            });
+            saveState();
+            renderTeam();
+            populateAdminForms();
+            showToast("Yeni ekip üyesi eklendi!");
+        }
+
+        function removeTeamMember(index) {
+            teamData.splice(index, 1);
+            saveState();
+            renderTeam();
+            populateAdminForms();
+            showToast("Ekip üyesi silindi.");
+        }
+
+        function saveCalculatorRates() {
+            const v15 = parseFloat(document.getElementById('rate-15').value);
+            const v35 = parseFloat(document.getElementById('rate-35').value);
+            const v50 = parseFloat(document.getElementById('rate-50').value);
+            const v70 = parseFloat(document.getElementById('rate-70').value);
+            const vOp = parseFloat(document.getElementById('rate-operator').value);
+
+            devState.rates.base15 = isNaN(v15) ? 2200 : v15;
+            devState.rates.base35 = isNaN(v35) ? 3000 : v35;
+            devState.rates.base50 = isNaN(v50) ? 4800 : v50;
+            devState.rates.base70 = isNaN(v70) ? 7500 : v70;
+            devState.rates.operatorFee = isNaN(vOp) ? 1200 : vOp;
+
+            saveState();
+            calculatePrice();
+            showToast("Hesaplayıcı taban fiyat oranları güncellendi!");
+        }
+
+        function addAuthorizedDevEmail() {
+            const email = document.getElementById('new-dev-email').value.trim();
+            if (email && !devState.authorizedEmails.includes(email)) {
+                devState.authorizedEmails.push(email);
+                saveState();
+                populateAdminForms();
+                document.getElementById('new-dev-email').value = '';
+                showToast(`${email} geliştirici olarak yetkilendirildi!`);
+            }
+        }
+
+        function removeDevEmail(index) {
+            devState.authorizedEmails.splice(index, 1);
+            saveState();
+            populateAdminForms();
+            showToast("Geliştirici e-postası kaldırıldı.");
+        }
+
+        function updateMasterPassword() {
+            const pass = document.getElementById('new-master-pass').value.trim();
+            if (pass) {
+                devState.masterPass = pass;
+                saveState();
+                document.getElementById('new-master-pass').value = '';
+                showToast("Master geliştirici şifresi güncellendi!");
+            }
+        }
+
+        // 7. General Helpers
+        function quickQuote(modelName) {
+            const msg = `Merhaba Batman Forklift, batmanforklift.com web sitenizdeki *${modelName}* alım / kiralama / tamir hakkında detaylı bilgi ve teklif almak istiyorum.`;
+            window.open(`https://wa.me/905303467055?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function sendCalculatedQuote() {
+            const typeText = document.getElementById('calc-type').options[document.getElementById('calc-type').selectedIndex].text;
+            const durationText = document.getElementById('calc-duration').options[document.getElementById('calc-duration').selectedIndex].text;
+            const priceText = document.getElementById('price-result').innerText;
+
+            const msg = `Merhaba Batman Forklift, batmanforklift.com sitenizden teklif hesapladım:\n\n- Araç: ${typeText}\n- Süre: ${durationText}\n- Tahmini Fiyat: ${priceText}\n\nBilgi almak istiyorum.`;
+            window.open(`https://wa.me/905303467055?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast("Talebiniz başarıyla alındı! Ekibimiz 15 dakika içinde dönecektir.");
+            e.target.reset();
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-msg');
+            document.getElementById('toast-text').innerText = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => { toast.classList.add('hidden'); }, 3500);
+        }
+
+        // Initialize state on window load
+        window.onload = function() {
+            loadState();
+        };
+
+        // Geliştirici paneli ESC tuşuyla kapatılabilme özelliği eklendi
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                const modal = document.getElementById('dev-modal');
+                if (modal && !modal.classList.contains('hidden')) {
+                    closeDevModal();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
