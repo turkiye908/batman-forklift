@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="scroll-smooth">
 <head>
     <!-- GOOGLE DOĞRULAMA KODU (KORUNDU) -->
     <meta name="google-site-verification" content="9jqTczfdsXY0ecxR5jmKKk6SvrLijWYPv8rbr4GR2Ck" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Batman Forklift | Mobil Tamir, Kiralama, Alım-Satım</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
@@ -16,116 +14,166 @@
                 extend: {
                     colors: {
                         brand: '#f59e0b',
+                        brandDark: '#d97706'
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between antialiased selection:bg-amber-500 selection:text-black">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-amber-500 selection:text-slate-950">
 
-    <!-- HEADER / ÜST BAR -->
-    <header class="border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- ÜST MENÜ (STICKY) -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center text-slate-950 font-black shadow-lg shadow-amber-500/20">
-                    <i class="fa-solid fa-truck-front text-lg"></i>
+                <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
                 </div>
                 <div>
-                    <h1 class="text-lg font-black tracking-tight leading-none text-white">BATMAN <span class="text-amber-500">FORKLİFT</span></h1>
-                    <p class="text-[10px] font-bold text-slate-400 mt-0.5 tracking-wide">TEKNİK SERVİS & KİRALAMA</p>
+                    <span class="text-lg font-black tracking-tight text-white block leading-none">BATMAN <span class="text-amber-500">FORKLİFT</span></span>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Teknik Servis & Kiralama</span>
                 </div>
             </div>
             
-            <a href="tel:+905303467055" class="bg-amber-500/10 hover:bg-amber-500/20 text-amber-500 border border-amber-500/30 px-3 py-1.5 rounded-lg text-xs font-bold transition">
-                <i class="fa-solid fa-phone mr-1.5"></i> Hızlı Ara
+            <a href="tel:+905303467055" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-4 py-2 rounded-xl text-xs font-black transition flex items-center shadow-lg shadow-amber-500/10">
+                <i class="fa-solid fa-phone mr-2"></i> HEMEN ARA
             </a>
         </div>
     </header>
 
-    <!-- ANA İÇERİK (Mobil ve PC Uyumlu Grid) -->
-    <main class="max-w-4xl mx-auto w-full px-4 py-6 my-auto">
-        
-        <!-- Üst Duyuru Kartı -->
-        <div class="bg-gradient-to-r from-amber-500/10 via-slate-900 to-slate-900 border border-amber-500/20 rounded-2xl p-4 mb-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-            <div class="flex items-center space-x-3">
-                <span class="flex h-3 w-3 relative">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-                </span>
-                <span class="text-xs font-bold text-slate-200">Batman & Tüm İlçelerinde 7/24 Yerinde Servis</span>
+    <!-- HERO SECTION (ANA EKRAN: TEK TIKLA HER ŞEY) -->
+    <section class="relative bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 border-b border-slate-800/60 py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+            <div class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 px-3 py-1.5 rounded-full text-amber-400 text-xs font-bold">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Batman & Çevre İllerde 7/24 Gezici Servis</span>
             </div>
-            <span class="text-[11px] bg-slate-800 text-slate-300 font-medium px-2.5 py-1 rounded-md border border-slate-700">Gezici Mobil Araç</span>
+            
+            <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">
+                Forklift Tamir, Kiralama ve <span class="text-amber-500">İkinci El Hizmetleri</span>
+            </h1>
+            
+            <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+                Arızalı forkliftleriniz için mobil servisimiz kapınıza gelsin. Uygun fiyatlı kiralama ve değerinde 2. el alım-satım çözümleri tek tık uzağınızda.
+            </p>
+
+            <!-- Hızlı Eylem Butonları -->
+            <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
+                <a href="tel:+905303467055" class="w-full sm:w-auto flex-1 py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-sm flex items-center justify-center space-x-2 shadow-xl shadow-amber-500/20 transition active:scale-95">
+                    <i class="fa-solid fa-phone text-base"></i>
+                    <span>ARA: 0530 346 70 55</span>
+                </a>
+                <a href="https://wa.me/905303467055?text=Merhaba,%20hizmetleriniz%20hakkinda%20bilgi%20almak%20istiyorum." target="_blank" class="w-full sm:w-auto flex-1 py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm flex items-center justify-center space-x-2 shadow-xl shadow-emerald-600/20 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>WHATSAPP HATLARI</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- HİZMETLER (KAYDIRDIKÇA GÖRÜNEN İÇERİK) -->
+    <section class="max-w-6xl mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl font-black text-white">HİZMETLERİMİZ</h2>
+            <p class="text-slate-400 text-xs mt-1">İhtiyacınıza en uygun çözümü seçin</p>
         </div>
 
-        <!-- Hizmet Kartları (Telefonda Tek Sütun, PC'de 3 Sütun) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <!-- Kart 1: Tamir -->
-            <a href="https://wa.me/905303467055?text=Merhaba,%20forklift%20tamir%20hakkinda%20bilgi%20almak%20istiyorum." target="_blank" class="group bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-amber-500/40 p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between">
+            <!-- Kart 1 -->
+            <div class="bg-slate-900 border border-slate-800 hover:border-amber-500/50 p-6 rounded-2xl transition duration-300 flex flex-col justify-between">
                 <div>
-                    <div class="w-12 h-12 bg-amber-500/10 text-amber-500 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-14 h-14 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-2xl flex items-center justify-center text-2xl mb-5">
                         <i class="fa-solid fa-wrench"></i>
                     </div>
-                    <h2 class="text-base font-bold text-white mb-1">Mobil Tamir & Bakım</h2>
-                    <p class="text-xs text-slate-400 leading-relaxed">Arızalı forkliftiniz için adrese mobil servis aracı gönderiyoruz.</p>
+                    <h3 class="text-lg font-bold text-white mb-2">Mobil Teknik Servis</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Batman ve bölge illerinde arızalanan forkliftleriniz için mobil bakım aracımızla yerinde müdahale ediyor, işinizin aksamasını önlüyoruz.
+                    </p>
                 </div>
-                <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs text-amber-500 font-bold">
-                    <span>Detay / Bilgi Al</span>
-                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                </div>
-            </a>
-
-            <!-- Kart 2: Kiralama -->
-            <a href="https://wa.me/905303467055?text=Merhaba,%20forklift%20kiralama%20hakkinda%20bilgi%20almak%20istiyorum." target="_blank" class="group bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-amber-500/40 p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-clock"></i>
-                    </div>
-                    <h2 class="text-base font-bold text-white mb-1">Forklift Kiralama</h2>
-                    <p class="text-xs text-slate-400 leading-relaxed">Saatlik, günlük, haftalık veya aylık operatörlü kiralama.</p>
-                </div>
-                <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs text-blue-400 font-bold">
-                    <span>Fiyat Teklifi Al</span>
-                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                </div>
-            </a>
-
-            <!-- Kart 3: Alım & Satım -->
-            <a href="https://wa.me/905303467055?text=Merhaba,%20forklift%20alim-satim%20hakkinda%20bilgi%20almak%20istiyorum." target="_blank" class="group bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-amber-500/40 p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-handshake"></i>
-                    </div>
-                    <h2 class="text-base font-bold text-white mb-1">Alım & Satım</h2>
-                    <p class="text-xs text-slate-400 leading-relaxed">İkinci el veya sıfır forkliftleriniz için değerinde nakit alım.</p>
-                </div>
-                <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs text-emerald-400 font-bold">
-                    <span>Araçları Gör</span>
-                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                </div>
-            </a>
-
-        </div>
-
-    </main>
-
-    <!-- ALT BUTONLAR & FOOTER -->
-    <footer class="border-t border-slate-800/80 bg-slate-900/30 backdrop-blur-md py-4 px-4">
-        <div class="max-w-xl mx-auto space-y-3">
-            <div class="grid grid-cols-2 gap-3">
-                <a href="tel:+905303467055" class="py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-sm flex items-center justify-center space-x-2 shadow-lg shadow-amber-500/20 active:scale-95 transition">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>HEMEN ARA</span>
-                </a>
-                <a href="https://wa.me/905303467055?text=Merhaba,%20bilgi%20almak%20istiyorum." target="_blank" class="py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm flex items-center justify-center space-x-2 shadow-lg shadow-emerald-600/20 active:scale-95 transition">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span>WHATSAPP</span>
+                <a href="https://wa.me/905303467055?text=Mobil%20Tamir%20Hakkında%20Bilgi" target="_blank" class="mt-6 inline-flex items-center justify-between text-xs font-bold text-amber-500 hover:underline">
+                    <span>Tamir Talebi Oluştur</span>
+                    <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
-            <p class="text-[10px] text-center text-slate-500">© Batman Forklift Mobil Teknik Servis</p>
+
+            <!-- Kart 2 -->
+            <div class="bg-slate-900 border border-slate-800 hover:border-blue-500/50 p-6 rounded-2xl transition duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-2xl flex items-center justify-center text-2xl mb-5">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Operatörlü Kiralama</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Saatlik, günlük, haftalık veya aylık seçeneklerle iş yükünüze uygun tonajda forklift kiralama imkanı sunuyoruz.
+                    </p>
+                </div>
+                <a href="https://wa.me/905303467055?text=Kiralama%20Fiyatları%20Hakkında%20Bilgi" target="_blank" class="mt-6 inline-flex items-center justify-between text-xs font-bold text-blue-400 hover:underline">
+                    <span>Kiralama Fiyatı Al</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Kart 3 -->
+            <div class="bg-slate-900 border border-slate-800 hover:border-emerald-500/50 p-6 rounded-2xl transition duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-2xl flex items-center justify-center text-2xl mb-5">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">2. El Alım - Satım</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Kullanılmış forkliftlerinizi yerinde ekspertiz ile değerinde nakit alıyor, bakımları yapılmış garantili 2. el satış yapıyoruz.
+                    </p>
+                </div>
+                <a href="https://wa.me/905303467055?text=Alım%20Satım%20Hakkında%20Bilgi" target="_blank" class="mt-6 inline-flex items-center justify-between text-xs font-bold text-emerald-400 hover:underline">
+                    <span>Araç Sat veya Satın Al</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
         </div>
+    </section>
+
+    <!-- NEDEN BİZ (SAYFAYI ZENGİNLEŞTİREN BÖLÜM) -->
+    <section class="bg-slate-900/50 border-y border-slate-800 py-12 px-4">
+        <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="space-y-1">
+                <span class="text-3xl font-black text-amber-500">7/24</span>
+                <p class="text-xs text-slate-400 font-bold">Kesintisiz Destek</p>
+            </div>
+            <div class="space-y-1">
+                <span class="text-3xl font-black text-amber-500">%100</span>
+                <p class="text-xs text-slate-400 font-bold">Müşteri Memnuniyeti</p>
+            </div>
+            <div class="space-y-1">
+                <span class="text-3xl font-black text-amber-500">Mobil</span>
+                <p class="text-xs text-slate-400 font-bold">Yerinde Tamir</p>
+            </div>
+            <div class="space-y-1">
+                <span class="text-3xl font-black text-amber-500">Hızlı</span>
+                <p class="text-xs text-slate-400 font-bold">Ulaşım & Teslimat</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 py-8 border-t border-slate-900 text-center text-xs text-slate-500 space-y-2">
+        <p class="font-bold text-slate-400">BATMAN FORKLİFT MOBİL TEKNİK SERVİS</p>
+        <p>© Tüm Hakları Saklıdır.</p>
     </footer>
+
+    <!-- SABİT ALT BARKOD (SADECE MOBİLDE GÖRÜNÜR HIZLI BUTONLAR) -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 p-3 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 z-50 flex gap-2">
+        <a href="tel:+905303467055" class="flex-1 py-3 bg-amber-500 text-slate-950 font-black text-xs rounded-xl flex items-center justify-center space-x-1.5 shadow-lg">
+            <i class="fa-solid fa-phone"></i>
+            <span>HEMEN ARA</span>
+        </a>
+        <a href="https://wa.me/905303467055?text=Merhaba" target="_blank" class="flex-1 py-3 bg-emerald-600 text-white font-black text-xs rounded-xl flex items-center justify-center space-x-1.5 shadow-lg">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>WHATSAPP</span>
+        </a>
+    </div>
 
 </body>
 </html>
